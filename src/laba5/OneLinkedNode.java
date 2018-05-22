@@ -14,7 +14,7 @@ public class OneLinkedNode {
     public OneLinkedNode getNext() { return next; }
     public void setNext(OneLinkedNode next) { this.next = next;}
     public OneLinkedNode next() {
-        return next != null ? next: null;
+        return next;
     }
 
 }

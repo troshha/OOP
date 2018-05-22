@@ -4,6 +4,7 @@ import org.junit.Test
 
 class OneLinkedListTest extends GroovyTestCase {
     OneLinkedList oneLinkedList = new OneLinkedList(10)
+
     @Test
     void testRemoveLast() {
         oneLinkedList.removeLast();
@@ -13,13 +14,13 @@ class OneLinkedListTest extends GroovyTestCase {
     @Test
     void testInvert() {
         List<Integer> list=new ArrayList<>();
-        for(int i=9;i>=0;i--)
+        for(int i = 9; i >= 0; i--)
         {
             list.add(i);
         }
-        String rightResult=list;
+        String rightResult = list;
         oneLinkedList.invert()
-        String result=oneLinkedList;
+        String result = oneLinkedList;
         assertEquals(rightResult,result)
     }
 

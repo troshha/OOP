@@ -5,14 +5,15 @@ import java.util.List;
 
 public class OneLinkedList {
     private OneLinkedNode root = null;
+
     OneLinkedList(int n)
     {
-        for(int i=0;i<n;i++)
-        {
+        for (int i = 0; i < n; i++) {
             addLast(i);
         }
     }
 
+    //Add element to the begining
     public void addFirst(int data) {
         if (root == null) {
             root = new OneLinkedNode(data);
@@ -20,6 +21,8 @@ public class OneLinkedList {
             root = new OneLinkedNode(data, root);
         }
     }
+
+    //Add element in the end
     public void addLast(int data) {
         if (root == null) {
             addFirst(data);
@@ -31,6 +34,8 @@ public class OneLinkedList {
             node.setNext(new OneLinkedNode(data));
         }
     }
+
+    //Remove first element
     public void removeFirst() {
         if (root != null) {
             OneLinkedNode node = root.next();
@@ -38,6 +43,8 @@ public class OneLinkedList {
             root = node;
         }
     }
+
+    //Find element with current data
     public OneLinkedNode find(int data) {
         OneLinkedNode node = root;
         while (node != null && node.getData() != data) {
@@ -45,6 +52,8 @@ public class OneLinkedList {
         }
         return node;
     }
+
+    //Get last element
     public int getLast()
     {
         OneLinkedNode node = root;
@@ -53,15 +62,18 @@ public class OneLinkedList {
         }
         return node.getData();
     }
+
+    //Get size node list
     public int getSize() {
         int count = 0;
         OneLinkedNode node = root;
-        while (node!= null) {
+        while (node != null) {
             node = node.next();
             count++;
         }
         return count;
     }
+    //Remove last element
     public void removeLast()
     {
         OneLinkedNode node=root;
@@ -71,32 +83,37 @@ public class OneLinkedList {
         }
         node.setNext(null);
     }
+
+    //Inversion list
     public void invert() {
-        List<Integer> list = new ArrayList<>();
-        OneLinkedNode node = root;
-        int size=getSize()/2;
-        int count=0;
-        while (size>count) {
-            addFirst(getLast());
+        int currentPosition = 0;
+        while (currentPosition <= getSize()-1)
+        {
+            OneLinkedNode node = root;
+            for (int i = 0; i < currentPosition; i++) node = node.next();
+            node.setNext(new OneLinkedNode(node.getData(), node.getNext()));
+            node.setData(getLast());
             removeLast();
-            count++;
+            currentPosition++;
         }
     }
+
+    //Bubble sort
     public void sort() {
         boolean isSorted;
-        int temp = 0;
-        int count=0;
-        int size=getSize();
+        int temp;
+        int count;
+        int size = getSize();
         while (true) {
-            count=0;
+            count = 0;
             isSorted = true;
             OneLinkedNode node = root;
-            while (size-1>count) {
+            while (size - 1 > count) {
                 if (node.getData() > node.getNext().getData()) {
                     temp = node.getData();
                     node.setData(node.next().getData());
                     node.next().setData(temp);
-                    node=node.next();
+                    node = node.next();
                     isSorted = false;
                 }
                 else
@@ -115,13 +132,11 @@ public class OneLinkedList {
     public String toString() {
         OneLinkedNode node = root;
         List<Integer> list=new ArrayList<>();
-        while (node!=null)
+        while (node != null)
         {
             list.add(node.getData());
             node=node.getNext();
         }
         return list.toString();
     }
-
-
 }
